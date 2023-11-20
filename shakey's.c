@@ -50,23 +50,23 @@ void order(){
 	
 	
 bool lowMoney(int n){
-	bool mahirap = true;
 	if(MyMoney < n){
 			system("cls");
 			 p("NOT ENOUGH MONEY......\n");
 			sleep(2);
-			mahirap = true;
+			return true;
 			}else{
-			mahirap = false;
+			return false;
 			}
-		return mahirap;	
+		
 }
 	
 	
 	
 	
 
-int toPay = 0;
+int toPay;
+bool ewan;
 void menu(){
 		do{
 		
@@ -93,6 +93,7 @@ void menu(){
 			s("%d",&quantity);
 			toPay+=674*quantity;
 			if(lowMoney(toPay)){
+			toPay = 0;
 			menu();
 			return;
 			}
