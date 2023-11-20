@@ -16,11 +16,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <unistd.h>
+#include <stdbool.h>
 #define p printf 
 #define s scanf
 
 
-
+int MyMoney = 10000;
 
 
 //DYNAMIC ARRAYS FOR STORAGE OF DATA and ALTERNATIVE TO DATABASE
@@ -47,10 +49,24 @@ void order(){
 
 	
 	
+bool lowMoney(int n){
+	bool mahirap = true;
+	if(MyMoney < n){
+			system("cls");
+			 p("NOT ENOUGH MONEY......\n");
+			sleep(2);
+			mahirap = true;
+			}else{
+			mahirap = false;
+			}
+		return mahirap;	
+}
+	
+	
 	
 	
 
-
+int toPay = 0;
 void menu(){
 		do{
 		
@@ -75,6 +91,11 @@ void menu(){
 		case 'a':
 			p("quantity: ");
 			s("%d",&quantity);
+			toPay+=674*quantity;
+			if(lowMoney(toPay)){
+			menu();
+			return;
+			}
 			itemName[i] = "Roast Beef Pizza";
 			itemNameSize++;
 			itemQuantity[i] = quantity;
@@ -84,7 +105,6 @@ void menu(){
 			i++;
 			menu();
 			return;
-			break;
 		case 'b':
 			p("quantity: ");
 			s("%d",&quantity);
@@ -269,7 +289,6 @@ void resibo(){
 
 
 void home(){
-	intro();
 	system("cls");
     p("\tS H A K E Y ' S\n\n");
     p("[1] EXIT\t[0] ORDER\n\n");
@@ -314,7 +333,7 @@ int main(){
  itemQuantity = (int*)calloc(itemQuantitySize, sizeof(int));
  itemPrice = (int*)calloc(itemPriceSize, sizeof(int));
 //DYNAMIC ARRAYS FOR STORAGE OF DATA and ALTERNATIVE TO DATABASE
-
+	intro();
     home();
     	
     
