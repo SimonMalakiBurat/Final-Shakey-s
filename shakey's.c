@@ -232,10 +232,24 @@ void menu(){
 
 
 
+char customerName[100],cashierName[100];
+void intro(){
+		system("cls");
+		p("ENTER CUSTOMER NAME: ");
+		gets(customerName);
+		p("ENTER CASHIER NAME: ");
+		gets(cashierName);
+}
+
+
+
+
+
 
 void resibo(){
 	system("cls");
 					p("\t\tR E C I E P T\n\n\n");
+					p("\t\tCUSTOMER: %s\n\t\tCASHIER: %s\n\n\n",customerName,cashierName);
 		p("%-30s%-10s%-15s\n\n\n\n", "ITEM","QUANTITY","PRICE");
  for (int i = 0; i < itemNameSize; ++i) {
         p("%-30s%-10d%-15d\n\n", itemName[i],itemQuantity[i],itemPrice[i]);
@@ -255,6 +269,7 @@ void resibo(){
 
 
 void home(){
+	intro();
 	system("cls");
     p("\tS H A K E Y ' S\n\n");
     p("[1] EXIT\t[0] ORDER\n\n");
