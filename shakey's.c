@@ -1,264 +1,195 @@
- //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
-  //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
-   //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
-    //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
-     //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
-      //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
-       //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
-        //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
-        /*
-		RAFAEL UMLAS
-		GIDEON LIMOS
-		CHRISTIAN ORBON
-		JUSTIN BAILON
-		ANDREI SIMON
-		*/
+//SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
+//SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
+//SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
+//SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
+//SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
+//SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS //SHAKEYS 
+/*
+RAFAEL UMLAS
+		
+GIDEON LIMOS
+		
+CHRISTIAN ORBON
+		
+JUSTIN BAILON
+		
+ANDREI SIMON
+*/		
+		
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <string.h>
 #define p printf 
 #define s scanf
 
 
-int MyMoney = 10000;
 
-
-//DYNAMIC ARRAYS FOR STORAGE OF DATA and ALTERNATIVE TO DATABASE
-int itemNameSize;
-int itemQuantitySize;
-int itemPriceSize;
-
-char** itemName;
-int* itemQuantity;
-int* itemPrice;
-//DYNAMIC ARRAYS FOR STORAGE OF DATA and ALTERNATIVE TO DATABASE
+//===========================================================	
+//STORAGE OF DATA ALTERNATIVE TO DATABASE
+char itemName[100000][100];
+int itemQuantity[100000];
+int itemPrice[100000];
+//STORAGE OF DATA ALTERNATIVE TO DATABASE
 
 
 
-
-
-
-	
-	
-	
-	
-
-int quantityKo(){
+//===========================================================	
+int promptQuantity(){
 		int n;
 		p("quantity: ");
 		s("%d",&n);
 		return n;
 }
-	
 
 
 
-int i = 0;
+
+
+//===========================================================
+//STORES DATA IN THE ARRAY
+int addToCart(int myCounter, char myItem[], int myQuantity, int myPrice){
+	strcpy(itemName[myCounter], myItem);
+			itemQuantity[myCounter] = myQuantity;
+			itemPrice[myCounter] = myPrice;				
+			myCounter++;
+			return myCounter;
+}
+
+
+
+
+//===========================================================	
+//EXECUTE MENU FUNTION
 char choiceOrder;
 void order(){
 	menu();	
 	}
-
-
-int addCart(int counter, char item[], int quantity, int price){
-		itemName[i] = item;
-		itemQuantity[i] = quantity;
-		itemPrice[i] = price;
-		itemNameSize++;
-		itemQuantitySize++;
-		itemPriceSize++;
-		counter++;
-		return counter;
-}
-
-
-
-
-
 	
-
+	
+//===========================================================	
+//MENU LOOP FUNCTION
+int iCounter = 0;
 void menu(){
-		do{
 		
 	system("cls");
-	p("\t\tM E N U\n\n");
-    p("[a] Roast Beef Pizza\t\tP674\n");
-    p("[b] Hawaiian Delight Pizza\tP584\n");
-    p("[c] Spinach Pizza\t\tP539\n");
-    p("[d] Classic Cheese Pizza\tP449\n");
-    p("[e] Carbonara\t\t\tP150\n");
-    p("[f] Spaghetti\t\t\tP125\n");
-    p("[g] Iced Tea\t\t\tP75\n");
-    p("[h] Coke\t\t\tP80\n");
-    p("[i] Lemon Tea\t\t\tP75\n");
-    p("[j] Sprite\t\t\tP80\n");
-    p("[k] Royal\t\t\tP80\n\n");
-    p("[1] BACK\t[0] DONE\n\n");
+	p("\tO R D E R\n\n");
+    p( "%-30s%s\n",  "[a] Roast Beef Pizza",  "P 674");
+    p( "%-30s%s\n",  "[b] Hawaiian Delight Pizza",  "P 584");
+    p( "%-30s%s\n",  "[c] Spinach Pizza",  "P 539");
+    p( "%-30s%s\n",  "[d] Classic Cheese Pizza",  "P 449");
+    p( "%-30s%s\n",  "[e] Carbonara",  "P 150");
+    p( "%-30s%s\n",  "[f] Spaghetti",  "P 125");
+    p( "%-30s%s\n",  "[g] Iced Tea",  "P 75");
+    p( "%-30s%s\n",  "[h] Coke",  "P 80");
+    p( "%-30s%s\n",  "[i] Lemon Tea",  "P 75");
+    p( "%-30s%s\n",  "[j] Sprite",  "P 80");
+    p( "%-30s%s\n\n",  "[k] Royal",  "P 80");
+    p( "[1] BACK\t[0] DONE\n\n");
     s("%c",&choiceOrder);
     choiceOrder = tolower(choiceOrder);//convert uppercase to lowercase
     int quantity;
+    int value;
 	switch(choiceOrder){
+//------------------------------------------------------------
 		case 'a':
-			quantity = quantityKo();
-//			itemName[i] = "Roast Beef Pizza";
-//			itemQuantity[i] = quantity;
-//			itemPrice[i] = 674*quantity;
-			i += addCart(i,"Roast Beef Pizza",quantity,674*quantity);
-//			itemNameSize++;
-//			itemQuantitySize++;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Roast Beef Pizza",quantity,674*quantity);
+			iCounter = value;
 			menu();
 			return;
+//------------------------------------------------------------			
 		case 'b':
-			quantity = quantityKo();
-			i += addCart(i,"Hawaiian Delight Pizza",quantity,584*quantity);
-//			itemName[i] = "Hawaiian Delight Pizza";
-//			itemNameSize++;
-//			itemQuantity[i] = quantity;
-//			itemQuantitySize++;
-//			itemPrice[i] = 584*quantity;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Hawaiian Delight Pizza",quantity,584*quantity);
+			iCounter = value;
 			menu();
 			return;
-			break;
+//------------------------------------------------------------			
 		case 'c':
-			quantity = quantityKo();
-			i += addCart(i,"Spinach Pizza",quantity,539*quantity);
-//			itemName[i] = "Spinach Pizza";
-//			itemNameSize++;
-//			itemQuantity[i] = quantity;
-//			itemQuantitySize++;
-//			itemPrice[i] = 539*quantity;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Spinach Pizza",quantity,539*quantity);
+			iCounter = value;
 			menu();
 			return;
-			break;
+//------------------------------------------------------------			
 		case 'd':
-			quantity = quantityKo();
-			i += addCart(i,"Classic Cheese Pizza",quantity,449*quantity);
-//			itemName[i] = "Classic Cheese Pizza";
-//			itemNameSize++;
-//			itemQuantity[i] = quantity;
-//			itemQuantitySize++;
-//			itemPrice[i] = 449*quantity;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Classic Cheese Pizza",quantity,449*quantity);
+			iCounter = value;
 			menu();
 			return;
-			break;
+//------------------------------------------------------------			
 		case 'e':
-			quantity = quantityKo();
-			i += addCart(i,"Carbonara",quantity,150*quantity);
-//			itemName[i] = "Carbonara";
-//			itemNameSize++;
-//			itemQuantity[i] = quantity;
-//			itemQuantitySize++;
-//			itemPrice[i] = 150*quantity;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Carbonara",quantity,150*quantity);
+			iCounter = value;
 			menu();
 			return;
-			break;
+//------------------------------------------------------------			
 		case 'f':
-			quantity = quantityKo();
-			i += addCart(i,"Spaghetti",quantity,125*quantity);
-//			itemName[i] = "Spaghetti";
-//			itemNameSize++;
-//			itemQuantity[i] = quantity;
-//			itemQuantitySize++;
-//			itemPrice[i] = 125*quantity;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Spaghetti",quantity,125*quantity);
+			iCounter = value;
 			menu();
 			return;
-			break;
+//------------------------------------------------------------			
 		case 'g':
-			quantity = quantityKo();
-			i += addCart(i,"Iced Tea",quantity,80*quantity);
-//			itemName[i] = "Iced Tea";
-//			itemNameSize++;
-//			itemQuantity[i] = quantity;
-//			itemQuantitySize++;
-//			itemPrice[i] = 80*quantity;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Iced Tea",quantity,80*quantity);
+			iCounter = value;
 			menu();
 			return;
-			break;
+//------------------------------------------------------------			
 		case 'h':
-			quantity = quantityKo();
-			i += addCart(i,"Coke",quantity,75*quantity);
-//			itemName[i] = "Coke";
-//			itemNameSize++;
-//			itemQuantity[i] = quantity;
-//			itemQuantitySize++;
-//			itemPrice[i] = 75*quantity;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Coke",quantity,75*quantity);
+			iCounter = value;
 			menu();
 			return;
-			break;
+//------------------------------------------------------------			
 		case 'i':
-			quantity = quantityKo();
-			i += addCart(i,"Lemon Tea",quantity,75*quantity);
-//			itemName[i] = "Lemon Tea";
-//			itemNameSize++;
-//			itemQuantity[i] = quantity;
-//			itemQuantitySize++;
-//			itemPrice[i] = 75*quantity;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Lemon Tea",quantity,75*quantity);
+			iCounter = value;
 			menu();
 			return;
-			break;
+//------------------------------------------------------------			
 		case 'j':
-			quantity = quantityKo();
-			i += addCart(i,"Sprite",quantity,80*quantity);
-//			itemName[i] = "Sprite";
-//			itemNameSize++;
-//			itemQuantity[i] = quantity;
-//			itemQuantitySize++;
-//			itemPrice[i] = 80*quantity;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Sprite",quantity,80*quantity);
+			iCounter = value;
 			menu();
 			return;
-			break;
+//------------------------------------------------------------			
 		case 'k':
-			quantity = quantityKo();
-			i += addCart(i,"Royal",quantity,80*quantity);
-//			itemName[i] = "Royal";
-//			itemNameSize++;
-//			itemQuantity[i] = quantity;
-//			itemQuantitySize++;
-//			itemPrice[i] = 80*quantity;
-//			itemPriceSize++;
-//			i++;
+			quantity = promptQuantity();
+			value = addToCart(iCounter,"Royal",quantity,80*quantity);
+			iCounter = value;
 			menu();
 			return;
-			break;
+//------------------------------------------------------------			
 		case '1':
 			home();
 			return;
-			break;
+//------------------------------------------------------------			
 		case '0':
 			resibo();
 			return;
-			break;
+//------------------------------------------------------------			
 		default:
-			break;
+			menu();
+			return;
 			
 	}
-	}while(choiceOrder != '1' && choiceOrder != '0');	
 }
 
 
 
+//===========================================================	
+//CUSTOMER AND CASHIER NAME INPUT FUNCTION
 char customerName[100],cashierName[100];
 void intro(){
 		system("cls");
@@ -273,29 +204,33 @@ void intro(){
 
 
 
+//===========================================================	
+//PRINT RECEIPT FUNTION
 void resibo(){
 	system("cls");
 					p("\t\tR E C I E P T\n\n\n");
-					p("\t\tCUSTOMER: %s\n\t\tCASHIER: %s\n\n\n",customerName,cashierName);
+					p("\t\tCUSTOMER: %s\n\t\t%s\n\n\n",customerName,cashierName);
 		p("%-30s%-10s%-15s\n\n\n\n", "ITEM","QUANTITY","PRICE");
- for (int i = 0; i < itemNameSize; ++i) {
+ for (int i = 0; i < iCounter; ++i) {
         p("%-30s%-10d%-15d\n\n", itemName[i],itemQuantity[i],itemPrice[i]);
     }
     
     int total = 0;
- for(int i = 0; i<itemPriceSize;i++){
+ for(int i = 0; i<iCounter;i++){
 		total+=itemPrice[i];
 }
-		p("\n\n\t\tTOTAL: P%d\n",total);
+
+p("\n\n\t\tTOTAL: P %d\n\n\n\n\n",total);
 }
 
 
 
 
 
-
-
+//===========================================================	
+//HOME FUNCTION
 void home(){
+	
 	system("cls");
     p("\tS H A K E Y ' S\n\n");
     p("[1] EXIT\t[0] ORDER\n\n");
@@ -319,8 +254,8 @@ void home(){
 
 
 
-
-
+//===========================================================	
+//EXIT FUNCTION
 void myExit(){
 	system("cls");
     p("PROGRAM TERMINATED\n");
@@ -330,22 +265,19 @@ void myExit(){
     
     
     
-int main(){
-//DYNAMIC ARRAYS FOR STORAGE OF DATA and ALTERNATIVE TO DATABASE
- itemNameSize = 0;
- itemQuantitySize = 0;
- itemPriceSize = 0;
- 
- itemName = (char**)malloc(itemNameSize * sizeof(char*));
- itemQuantity = (int*)calloc(itemQuantitySize, sizeof(int));
- itemPrice = (int*)calloc(itemPriceSize, sizeof(int));
-//DYNAMIC ARRAYS FOR STORAGE OF DATA and ALTERNATIVE TO DATABASE
-	intro();
-    home();
-    	
+
     
-		free(itemQuantity);
-		free(itemPrice);
- 		free(itemName);
- 	return 0;
+//===========================================================	
+//MAIN FUNCTION
+int main(){
+
+	
+      intro();
+  	 home();
+	
+    
+	
+
+   	
+    return 0;
 }
