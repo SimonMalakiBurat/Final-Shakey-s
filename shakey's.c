@@ -39,200 +39,206 @@ int* itemPrice;
 
 
 
+
+	
+	
+	
+	
+
+int quantityKo(){
+		int n;
+		p("quantity: ");
+		s("%d",&n);
+		return n;
+}
+	
+
+
+
 int i = 0;
 char choiceOrder;
 void order(){
 	menu();	
 	}
-	
-	
 
-	
-	
-bool lowMoney(int n){
-	if(MyMoney < n){
-			system("cls");
-			 p("NOT ENOUGH MONEY......\n");
-			sleep(2);
-			return true;
-			}else{
-			return false;
-			}
-		
+
+int addCart(int counter, char item[], int quantity, int price){
+		itemName[i] = item;
+		itemQuantity[i] = quantity;
+		itemPrice[i] = price;
+		itemNameSize++;
+		itemQuantitySize++;
+		itemPriceSize++;
+		counter++;
+		return counter;
 }
-	
-	
-	
+
+
+
+
+
 	
 
-int toPay;
-bool ewan;
 void menu(){
 		do{
 		
 	system("cls");
-	p("\tO R D E R\n\n");
-    p("[a] Roast Beef Pizza - P674\n");
-    p("[b] Hawaiian Delight Pizza - P584\n");
-    p("[c] Spinach Pizza - P539\n");
-    p("[d] Classic Cheese Pizza - P449\n");
-    p("[e] Carbonara - P150\n");
-    p("[f] Spaghetti - P125\n");
-    p("[g] Iced Tea - P75\n");
-    p("[h] Coke - P80\n");
-    p("[i] Lemon Tea - P75\n");
-    p("[j] Sprite - P80\n");
-    p("[k] Royal - P80\n\n");
+	p("\t\tM E N U\n\n");
+    p("[a] Roast Beef Pizza\t\tP674\n");
+    p("[b] Hawaiian Delight Pizza\tP584\n");
+    p("[c] Spinach Pizza\t\tP539\n");
+    p("[d] Classic Cheese Pizza\tP449\n");
+    p("[e] Carbonara\t\t\tP150\n");
+    p("[f] Spaghetti\t\t\tP125\n");
+    p("[g] Iced Tea\t\t\tP75\n");
+    p("[h] Coke\t\t\tP80\n");
+    p("[i] Lemon Tea\t\t\tP75\n");
+    p("[j] Sprite\t\t\tP80\n");
+    p("[k] Royal\t\t\tP80\n\n");
     p("[1] BACK\t[0] DONE\n\n");
     s("%c",&choiceOrder);
     choiceOrder = tolower(choiceOrder);//convert uppercase to lowercase
     int quantity;
 	switch(choiceOrder){
 		case 'a':
-			p("quantity: ");
-			s("%d",&quantity);
-			toPay+=674*quantity;
-			if(lowMoney(toPay)){
-			toPay = 0;
-			menu();
-			return;
-			}
-			itemName[i] = "Roast Beef Pizza";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 674*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+//			itemName[i] = "Roast Beef Pizza";
+//			itemQuantity[i] = quantity;
+//			itemPrice[i] = 674*quantity;
+			i += addCart(i,"Roast Beef Pizza",quantity,674*quantity);
+//			itemNameSize++;
+//			itemQuantitySize++;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 		case 'b':
-			p("quantity: ");
-			s("%d",&quantity);
-			itemName[i] = "Hawaiian Delight Pizza";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 584*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+			i += addCart(i,"Hawaiian Delight Pizza",quantity,584*quantity);
+//			itemName[i] = "Hawaiian Delight Pizza";
+//			itemNameSize++;
+//			itemQuantity[i] = quantity;
+//			itemQuantitySize++;
+//			itemPrice[i] = 584*quantity;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 			break;
 		case 'c':
-			p("quantity: ");
-			s("%d",&quantity);
-			itemName[i] = "Spinach Pizza";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 539*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+			i += addCart(i,"Spinach Pizza",quantity,539*quantity);
+//			itemName[i] = "Spinach Pizza";
+//			itemNameSize++;
+//			itemQuantity[i] = quantity;
+//			itemQuantitySize++;
+//			itemPrice[i] = 539*quantity;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 			break;
 		case 'd':
-			p("quantity: ");
-			s("%d",&quantity);
-			itemName[i] = "Classic Cheese Pizza";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 449*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+			i += addCart(i,"Classic Cheese Pizza",quantity,449*quantity);
+//			itemName[i] = "Classic Cheese Pizza";
+//			itemNameSize++;
+//			itemQuantity[i] = quantity;
+//			itemQuantitySize++;
+//			itemPrice[i] = 449*quantity;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 			break;
 		case 'e':
-			p("quantity: ");
-			s("%d",&quantity);
-			itemName[i] = "Carbonara";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 150*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+			i += addCart(i,"Carbonara",quantity,150*quantity);
+//			itemName[i] = "Carbonara";
+//			itemNameSize++;
+//			itemQuantity[i] = quantity;
+//			itemQuantitySize++;
+//			itemPrice[i] = 150*quantity;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 			break;
 		case 'f':
-			p("quantity: ");
-			s("%d",&quantity);
-			itemName[i] = "Spaghetti";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 125*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+			i += addCart(i,"Spaghetti",quantity,125*quantity);
+//			itemName[i] = "Spaghetti";
+//			itemNameSize++;
+//			itemQuantity[i] = quantity;
+//			itemQuantitySize++;
+//			itemPrice[i] = 125*quantity;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 			break;
 		case 'g':
-			p("quantity: ");
-			s("%d",&quantity);
-			itemName[i] = "Iced Tea";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 80*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+			i += addCart(i,"Iced Tea",quantity,80*quantity);
+//			itemName[i] = "Iced Tea";
+//			itemNameSize++;
+//			itemQuantity[i] = quantity;
+//			itemQuantitySize++;
+//			itemPrice[i] = 80*quantity;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 			break;
 		case 'h':
-			p("quantity: ");
-			s("%d",&quantity);
-			itemName[i] = "Coke";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 75*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+			i += addCart(i,"Coke",quantity,75*quantity);
+//			itemName[i] = "Coke";
+//			itemNameSize++;
+//			itemQuantity[i] = quantity;
+//			itemQuantitySize++;
+//			itemPrice[i] = 75*quantity;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 			break;
 		case 'i':
-			p("quantity: ");
-			s("%d",&quantity);
-			itemName[i] = "Lemon Tea";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 75*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+			i += addCart(i,"Lemon Tea",quantity,75*quantity);
+//			itemName[i] = "Lemon Tea";
+//			itemNameSize++;
+//			itemQuantity[i] = quantity;
+//			itemQuantitySize++;
+//			itemPrice[i] = 75*quantity;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 			break;
 		case 'j':
-			p("quantity: ");
-			s("%d",&quantity);
-			itemName[i] = "Sprite";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 80*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+			i += addCart(i,"Sprite",quantity,80*quantity);
+//			itemName[i] = "Sprite";
+//			itemNameSize++;
+//			itemQuantity[i] = quantity;
+//			itemQuantitySize++;
+//			itemPrice[i] = 80*quantity;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 			break;
 		case 'k':
-			p("quantity: ");
-			s("%d",&quantity);
-			itemName[i] = "Royal";
-			itemNameSize++;
-			itemQuantity[i] = quantity;
-			itemQuantitySize++;
-			itemPrice[i] = 80*quantity;
-			itemPriceSize++;
-			i++;
+			quantity = quantityKo();
+			i += addCart(i,"Royal",quantity,80*quantity);
+//			itemName[i] = "Royal";
+//			itemNameSize++;
+//			itemQuantity[i] = quantity;
+//			itemQuantitySize++;
+//			itemPrice[i] = 80*quantity;
+//			itemPriceSize++;
+//			i++;
 			menu();
 			return;
 			break;
