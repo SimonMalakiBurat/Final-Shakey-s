@@ -32,7 +32,6 @@ ANDREI SIMON
 char itemName[100000][100];
 int itemQuantity[100000];
 int itemPrice[100000];
-//STORAGE OF DATA ALTERNATIVE TO DATABASE
 
 
 
@@ -51,10 +50,11 @@ int promptQuantity(){
 //===========================================================
 //STORES DATA IN THE ARRAY
 int addToCart(int myCounter, char myItem[], int myQuantity, int myPrice){
-	strcpy(itemName[myCounter], myItem);
-			itemQuantity[myCounter] = myQuantity;
-			itemPrice[myCounter] = myPrice;				
-			myCounter++;
+	strcpy(itemName[myCounter], myItem);//insert data into item array
+			itemQuantity[myCounter] = myQuantity;//insert data into quantity array
+			itemPrice[myCounter] = myPrice;	//insert data into price array			
+			myCounter++;/*increment everytime menu function is looped, 
+			used in condition of loop in resibo function*/
 			return myCounter;
 }
 
@@ -69,8 +69,9 @@ void order(){
 	}
 	
 	
+	
+	
 	void text(){
-	system("cls");
 	p("\tO R D E R\n\n");
     p( "%-30s%s\n",  "[a] Roast Beef Pizza",  "P 674");
     p( "%-30s%s\n",  "[b] Hawaiian Delight Pizza",  "P 584");
@@ -87,30 +88,17 @@ void order(){
 	}
 	
 	void menu(){
-	system("cls");
-	text();
-//	p("\tO R D E R\n\n");
-//    p( "%-30s%s\n",  "[a] Roast Beef Pizza",  "P 674");
-//    p( "%-30s%s\n",  "[b] Hawaiian Delight Pizza",  "P 584");
-//    p( "%-30s%s\n",  "[c] Spinach Pizza",  "P 539");
-//    p( "%-30s%s\n",  "[d] Classic Cheese Pizza",  "P 449");
-//    p( "%-30s%s\n",  "[e] Carbonara",  "P 150");
-//    p( "%-30s%s\n",  "[f] Spaghetti",  "P 125");
-//    p( "%-30s%s\n",  "[g] Iced Tea",  "P 75");
-//    p( "%-30s%s\n",  "[h] Coke",  "P 80");
-//    p( "%-30s%s\n",  "[i] Lemon Tea",  "P 75");
-//    p( "%-30s%s\n",  "[j] Sprite",  "P 80");
-//    p( "%-30s%s\n\n",  "[k] Royal",  "P 80");
-//    p( "[1] BACK\t[0] DONE\n\n");
+	system("cls");/*clears terminal*/
+	text();/*call text function*/
     s("%c",&choiceOrder);
     choiceOrder = tolower(choiceOrder);//convert uppercase to lowercase
     int quantity;
 	switch(choiceOrder){
 //------------------------------------------------------------
 		case 'a':
-			quantity = promptQuantity();
-			iCounter = addToCart(iCounter,"Roast Beef Pizza",quantity,674*quantity);
-			menu();
+			quantity = promptQuantity();/*assign a value to quantity variable*/
+			iCounter = addToCart(iCounter,"Roast Beef Pizza",quantity,674*quantity);/*assign a value to iCounter*/
+			menu();/*recursion*/
 			return;
 //------------------------------------------------------------			
 		case 'b':
@@ -173,16 +161,16 @@ void order(){
 			menu();
 			return;
 //------------------------------------------------------------			
-		case '1':
+		case '1':/*if user input 1, will execute home function*/
 			home();
 			return;
 //------------------------------------------------------------			
 		case '0':
-			resibo();
+			resibo();/*if user input 0, will execute resibo function*/
 			return;
 //------------------------------------------------------------			
 		default:
-			menu();
+			menu();/*if user input not match in any cases, recursion*/
 			return;
 			
 	}
@@ -194,11 +182,11 @@ void order(){
 //CUSTOMER AND CASHIER NAME INPUT FUNCTION
 char customerName[100],cashierName[100];
 void intro(){
-		system("cls");
+		system("cls");/*clears terminal*/
 		p("ENTER CUSTOMER NAME: ");
-		gets(customerName);
+		gets(customerName);/*prompts user for customer name and store it in a variable*/
 		p("ENTER CASHIER NAME: ");
-		gets(cashierName);
+		gets(cashierName);/*prompts user for cashier name and store it in a variable*/
 }
 
 
@@ -209,16 +197,16 @@ void intro(){
 //===========================================================	
 //PRINT RECEIPT FUNCTION
 void resibo(){
-	system("cls");
+	system("cls");/*clears terminal*/
 					p("\t\tR E C I E P T\n\n\n");
 					p("\t\tCUSTOMER: %s\n\t\tCASHIER: %s\n\n\n",customerName,cashierName);
 		p("%-30s%-10s%-15s\n\n\n\n", "ITEM","QUANTITY","PRICE");
- for (int i = 0; i < iCounter; ++i) {
+ for (int i = 0; i < iCounter; ++i) {/*iterate everything inside my arrays*/
         p("%-30s%-10d%-15d\n\n", itemName[i],itemQuantity[i],itemPrice[i]);
     }
     
     int total = 0;
- for(int i = 0; i<iCounter;i++){
+ for(int i = 0; i<iCounter;i++){/*iterate everthing inside itemPrice array add it's value to total variable*/
 		total+=itemPrice[i];
 }
 
@@ -233,7 +221,7 @@ p("\n\n\t\tTOTAL: P %d\n\n\n\n\n",total);
 //HOME FUNCTION
 void home(){
 	
-	system("cls");
+	system("cls");/*clears terminal*/
     p("\tS H A K E Y ' S\n\n");
     p("[1] EXIT\t[0] ORDER\n\n");
     char choice;
@@ -241,15 +229,15 @@ void home(){
     choice = tolower(choice);//convert uppercase to lowercase
     switch(choice){
     case '0':
-    	order();
+    	order();/*execute order function*/
     	return;
     	break;
     case '1':
-    	myExit();
+    	myExit();/*terminates the program*/
     	return;
     	break;
     default:
-    	home();
+    	home();/*recursion*/
     	return;
 	}
 }
@@ -262,7 +250,7 @@ void home(){
 //===========================================================	
 //EXIT FUNCTION
 void myExit(){
-	system("cls");
+	system("cls");/*clears terminal*/
     p("PROGRAM TERMINATED\n");
 }
     
