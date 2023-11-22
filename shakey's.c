@@ -37,13 +37,13 @@ int itemPrice[100000];
 
 
 //===========================================================	
+//PROMPTS ITEM QUANTITY FROM USER
 int promptQuantity(){
 		int n;
 		p("quantity: ");
 		s("%d",&n);
 		return n;
 }
-
 
 
 
@@ -60,20 +60,16 @@ int addToCart(int myCounter, char myItem[], int myQuantity, int myPrice){
 
 
 
-
+int iCounter;
 //===========================================================	
-//EXECUTE MENU FUNTION
+//EXECUTE MENU FUNCTION
 char choiceOrder;
 void order(){
 	menu();	
 	}
 	
 	
-//===========================================================	
-//MENU LOOP FUNCTION
-int iCounter = 0;
-void menu(){
-		
+	void text(){
 	system("cls");
 	p("\tO R D E R\n\n");
     p( "%-30s%s\n",  "[a] Roast Beef Pizza",  "P 674");
@@ -88,86 +84,92 @@ void menu(){
     p( "%-30s%s\n",  "[j] Sprite",  "P 80");
     p( "%-30s%s\n\n",  "[k] Royal",  "P 80");
     p( "[1] BACK\t[0] DONE\n\n");
+	}
+	
+	void menu(){
+	system("cls");
+	text();
+//	p("\tO R D E R\n\n");
+//    p( "%-30s%s\n",  "[a] Roast Beef Pizza",  "P 674");
+//    p( "%-30s%s\n",  "[b] Hawaiian Delight Pizza",  "P 584");
+//    p( "%-30s%s\n",  "[c] Spinach Pizza",  "P 539");
+//    p( "%-30s%s\n",  "[d] Classic Cheese Pizza",  "P 449");
+//    p( "%-30s%s\n",  "[e] Carbonara",  "P 150");
+//    p( "%-30s%s\n",  "[f] Spaghetti",  "P 125");
+//    p( "%-30s%s\n",  "[g] Iced Tea",  "P 75");
+//    p( "%-30s%s\n",  "[h] Coke",  "P 80");
+//    p( "%-30s%s\n",  "[i] Lemon Tea",  "P 75");
+//    p( "%-30s%s\n",  "[j] Sprite",  "P 80");
+//    p( "%-30s%s\n\n",  "[k] Royal",  "P 80");
+//    p( "[1] BACK\t[0] DONE\n\n");
     s("%c",&choiceOrder);
     choiceOrder = tolower(choiceOrder);//convert uppercase to lowercase
     int quantity;
-    int value;
 	switch(choiceOrder){
 //------------------------------------------------------------
 		case 'a':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Roast Beef Pizza",quantity,674*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Roast Beef Pizza",quantity,674*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'b':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Hawaiian Delight Pizza",quantity,584*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Hawaiian Delight Pizza",quantity,584*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'c':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Spinach Pizza",quantity,539*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Spinach Pizza",quantity,539*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'd':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Classic Cheese Pizza",quantity,449*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Classic Cheese Pizza",quantity,449*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'e':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Carbonara",quantity,150*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Carbonara",quantity,150*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'f':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Spaghetti",quantity,125*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Spaghetti",quantity,125*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'g':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Iced Tea",quantity,80*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Iced Tea",quantity,80*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'h':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Coke",quantity,75*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Coke",quantity,75*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'i':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Lemon Tea",quantity,75*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Lemon Tea",quantity,75*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'j':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Sprite",quantity,80*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Sprite",quantity,80*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'k':
 			quantity = promptQuantity();
-			value = addToCart(iCounter,"Royal",quantity,80*quantity);
-			iCounter = value;
+			iCounter = addToCart(iCounter,"Royal",quantity,80*quantity);
 			menu();
 			return;
 //------------------------------------------------------------			
@@ -205,11 +207,11 @@ void intro(){
 
 
 //===========================================================	
-//PRINT RECEIPT FUNTION
+//PRINT RECEIPT FUNCTION
 void resibo(){
 	system("cls");
 					p("\t\tR E C I E P T\n\n\n");
-					p("\t\tCUSTOMER: %s\n\t\t%s\n\n\n",customerName,cashierName);
+					p("\t\tCUSTOMER: %s\n\t\tCASHIER: %s\n\n\n",customerName,cashierName);
 		p("%-30s%-10s%-15s\n\n\n\n", "ITEM","QUANTITY","PRICE");
  for (int i = 0; i < iCounter; ++i) {
         p("%-30s%-10d%-15d\n\n", itemName[i],itemQuantity[i],itemPrice[i]);
@@ -254,6 +256,9 @@ void home(){
 
 
 
+
+
+
 //===========================================================	
 //EXIT FUNCTION
 void myExit(){
@@ -264,20 +269,14 @@ void myExit(){
     
     
     
-    
 
     
 //===========================================================	
 //MAIN FUNCTION
 int main(){
-
 	
       intro();
   	 home();
-	
-    
-	
-
-   	
+  	 
     return 0;
 }
