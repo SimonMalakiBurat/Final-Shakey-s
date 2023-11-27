@@ -60,7 +60,7 @@ int addToCart(int myCounter, char myItem[], int myQuantity, int myPrice){
 
 
 
-int iCounter;
+int iCounter = 0;
 //===========================================================	
 //EXECUTE MENU FUNCTION
 char choiceOrder;
@@ -167,8 +167,26 @@ void order(){
 			return;
 //------------------------------------------------------------			
 		case '0':
+			if(iCounter > 0){
 			resibo();/*if user input 0, will execute resibo function*/
 			return;
+			}else{
+			system("cls");
+			char choice;
+        	p("YOU DID NOT ORDER ANYTHING...\n\n");
+        	p("ORDER AGAIN? (Y/N)\n\n");
+        	s(" %c",&choice);
+        	choice = tolower(choice);//convert uppercase to lowercase
+        	switch(choice){
+        	case 'y':
+        		menu();
+        		return;
+        	case 'n':
+        		myExit();
+        		return;
+			}
+			}
+			
 //------------------------------------------------------------			
 		default:
 			menu();/*if user input not match in any cases, recursion*/
@@ -198,7 +216,7 @@ void intro(){
 //===========================================================	
 //PRINT RECEIPT FUNCTION
 void resibo(){
-	system("cls");/*clears terminal*/
+					system("cls");/*clears terminal*/
 					p("\t\tR E C I E P T\n\n\n");
 					p("\t\tCUSTOMER: %s\n\t\tCASHIER: %s\n\n\n",customerName,cashierName);
 		p("%-30s%-10s%-15s\n\n\n\n", "ITEM","QUANTITY","PRICE");
@@ -217,19 +235,17 @@ p("\n\n\t\tTOTAL: P %d\n\n\n\n\n",total);
 
 
 
-//	int iCounter;
-//char itemName[100000][100];
-//int itemQuantity[100000];
-//int itemPrice[100000];
 //===========================================================	
 //HOME FUNCTION
 void home(){
+	//EMPTY THE ARRAY AND RESET COUNTER IF HOME FUNCTION IS CALLED
 	for(int i = 0; i<iCounter;i++){
 		strcpy(itemName[i], "");  
 		itemQuantity[i] = 0;
 		itemPrice[i] = 0;
 		}
 	iCounter = 0;
+	//EMPTY THE ARRAY AND RESET COUNTER IF HOME FUNCTION IS CALLED
 	
 	system("cls");/*clears terminal*/
     p("\tS H A K E Y ' S\n\n");
