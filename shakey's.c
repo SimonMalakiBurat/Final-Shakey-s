@@ -18,6 +18,7 @@ ANDREI SIMON
 		
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <ctype.h>
 #include <unistd.h>
 #include <stdbool.h>
@@ -25,6 +26,9 @@ ANDREI SIMON
 #define p printf 
 #define s scanf
 
+
+
+int myMoney = 10000;
 
 
 //===========================================================	
@@ -50,11 +54,16 @@ int promptQuantity(){
 //===========================================================
 //STORES DATA IN THE ARRAY
 int addToCart(int myCounter, char myItem[], int myQuantity, int myPrice){
-	strcpy(itemName[myCounter], myItem);//insert data into item array
+	
+			strcpy(itemName[myCounter], myItem);//insert data into item array
+			
 			itemQuantity[myCounter] = myQuantity;//insert data into quantity array
-			itemPrice[myCounter] = myPrice;	//insert data into price array			
+			
+			itemPrice[myCounter] = myPrice;	//insert data into price array	
+					
 			myCounter++;/*increment everytime menu function is looped, 
 			used in condition of loop in resibo function*/
+			
 			return myCounter;
 }
 
@@ -88,6 +97,8 @@ void order(){
 	}
 	
 
+
+// int myMoney = rand() % 5001 + 5000;
 	void menu(){
 	system("cls");/*clears terminal*/
 	text();/*call text function*/
@@ -98,9 +109,13 @@ void order(){
 //------------------------------------------------------------
 		case 'a':
 			quantity = promptQuantity();/*assign a value to quantity variable*/
+			if(myMoney > 674*quantity){
 			iCounter = addToCart(iCounter,"Roast Beef Pizza",quantity,674*quantity);/*assign a value to iCounter*/
+			myMoney-=674*quantity;
 			menu();/*recursion*/
 			return;
+			}
+			
 //------------------------------------------------------------			
 		case 'b':
 			quantity = promptQuantity();
@@ -167,10 +182,10 @@ void order(){
 			return;
 //------------------------------------------------------------			
 		case '0':
-			if(iCounter > 0){
-			resibo();/*if user input 0, will execute resibo function*/
+			if(iCounter > 0){//this will execute if array is NOT empty
+			resibo();/*calls resbio funtion*/
 			return;
-			}else{
+			}else{/*execute block of code if counter equals to 0*///this will execute if array IS empty
 			system("cls");
 			char choice;
         	p("YOU DID NOT ORDER ANYTHING...\n\n");
@@ -281,7 +296,7 @@ void myExit(){
 }
     
     
-    
+
     
 
     
