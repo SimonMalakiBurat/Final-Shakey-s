@@ -87,6 +87,7 @@ void order(){
     p( "[1] BACK\t[0] DONE\n\n");
 	}
 	
+
 	void menu(){
 	system("cls");/*clears terminal*/
 	text();/*call text function*/
@@ -216,10 +217,19 @@ p("\n\n\t\tTOTAL: P %d\n\n\n\n\n",total);
 
 
 
-
+//	int iCounter;
+//char itemName[100000][100];
+//int itemQuantity[100000];
+//int itemPrice[100000];
 //===========================================================	
 //HOME FUNCTION
 void home(){
+	for(int i = 0; i<iCounter;i++){
+		strcpy(itemName[i], "");  
+		itemQuantity[i] = 0;
+		itemPrice[i] = 0;
+		}
+	iCounter = 0;
 	
 	system("cls");/*clears terminal*/
     p("\tS H A K E Y ' S\n\n");
