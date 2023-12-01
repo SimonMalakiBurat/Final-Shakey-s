@@ -26,7 +26,7 @@ ANDREI SIMON
 
 
 
-int myMoney = 10000;
+int myMoney = 10000;//INITIAL BALANCE
 
 
 //===========================================================	
@@ -68,15 +68,15 @@ int addToCart(int myCounter, char myItem[], int myQuantity, int myPrice){
 
 
 int iCounter = 0;
-//===========================================================	
-//EXECUTE MENU FUNCTION
+
 char choiceOrder;
 void order(){
 	menu();	
 	}
 	
 	
-	
+	//==========================================================
+	//DYNAMIC DISPLAY OF CURRENT BALANCE
 	void top(){
 		p("\tO R D E R");
 		p("\t\033[1mBALANCE: %d\033[0m\n\n",myMoney);
@@ -105,16 +105,17 @@ void order(){
 //CHECK IF MONEY IS LESS THAN PRICE OF ITEM, IF MONEY IS GREATER THAN PRICE, SUBTRACT
 bool checkMoney(int money, int price){
 	bool again;
-	if(money < price){
+	if(money < price){//IF MONEY IS LESS THAN PRICE
 		p("\033[1mINSUFFICIENT BALANCE\033[0m\n");
 		again = true;
 	}else{
-		myMoney-=price;
+		myMoney-=price;//SUBTRACT CURRENT MONEY TO PRICE
 	}
 	return again;
 }
 
-
+	//===========================================================	
+//FOR PREVIEWING OF ORDERED ITEMS
 void previewOrderList(){
 		system("cls");/*clears terminal*/
 		p("%-30s%-10s%-15s\n\n\n\n", "ITEM","QUANTITY","PRICE");
@@ -137,10 +138,10 @@ void previewOrderList(){
 		case 'a':
 			a:
 			quantity = promptQuantity();/*assign a value to quantity variable*/
-			if(checkMoney(myMoney, 674*quantity))goto a;
+			if(checkMoney(myMoney, 674*quantity))goto a;//WILL GO TO ASSIGNED LABEL IF MONEY IS LESS THAN PRICE, BASTA MAG LOLOOP
 			iCounter = addToCart(iCounter,"Roast Beef Pizza",quantity,674*quantity);/*assign a value to iCounter*/
-			previewOrderList();
-			sleep(2);
+			previewOrderList();//PARA LANG MAKITA YUNG MGA INORDER
+			sleep(2);//DELAY LANG ITO PARA MAANGAS
 			menu();/*recursion*/
 			return;
 			
@@ -378,5 +379,5 @@ int main(){
       intro();
   	 home();
   	 
-    return 0;
+    return 0;;
 }
