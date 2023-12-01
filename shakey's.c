@@ -77,9 +77,14 @@ void order(){
 	
 	
 	
+	void top(){
+		p("\tO R D E R");
+		p("\t\033[1mBALANCE: %d\033[0m\n\n",myMoney);
+	}
+	
 	
 	void text(){
-	p("\tO R D E R\n\n");
+	top();
     p( "%-30s%s\n",  "[a] Roast Beef Pizza",  "P 674");
     p( "%-30s%s\n",  "[b] Hawaiian Delight Pizza",  "P 584");
     p( "%-30s%s\n",  "[c] Spinach Pizza",  "P 539");
@@ -94,9 +99,33 @@ void order(){
     p( "[1] BACK\t[0] DONE\n\n");
 	}
 	
+	
+	
+	//===========================================================	
+//CHECK IF MONEY IS LESS THAN PRICE OF ITEM, IF MONEY IS GREATER THAN PRICE, SUBTRACT
+bool checkMoney(int money, int price){
+	bool again;
+	if(money < price){
+		p("\033[1mINSUFFICIENT BALANCE\033[0m\n");
+		again = true;
+	}else{
+		myMoney-=price;
+	}
+	return again;
+}
 
 
-// int myMoney = rand() % 5001 + 5000;
+void previewOrderList(){
+		system("cls");/*clears terminal*/
+		p("%-30s%-10s%-15s\n\n\n\n", "ITEM","QUANTITY","PRICE");
+ for (int i = 0; i < iCounter; ++i) {/*iterate everything inside my arrays*/
+        p("%-30s%-10d%-15d\n\n", itemName[i],itemQuantity[i],itemPrice[i]);
+    }
+}
+
+
+
+
 	void menu(){
 	system("cls");/*clears terminal*/
 	text();/*call text function*/
@@ -106,69 +135,113 @@ void order(){
 	switch(choiceOrder){
 //------------------------------------------------------------
 		case 'a':
+			a:
 			quantity = promptQuantity();/*assign a value to quantity variable*/
+			if(checkMoney(myMoney, 674*quantity))goto a;
 			iCounter = addToCart(iCounter,"Roast Beef Pizza",quantity,674*quantity);/*assign a value to iCounter*/
+			previewOrderList();
+			sleep(2);
 			menu();/*recursion*/
 			return;
 			
 //------------------------------------------------------------			
 		case 'b':
+			b:
 			quantity = promptQuantity();
+			if(checkMoney(myMoney, 584*quantity))goto b;
 			iCounter = addToCart(iCounter,"Hawaiian Delight Pizza",quantity,584*quantity);
+			previewOrderList();
+			sleep(2);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'c':
+			c:
 			quantity = promptQuantity();
+			if(checkMoney(myMoney, 539*quantity))goto c;
 			iCounter = addToCart(iCounter,"Spinach Pizza",quantity,539*quantity);
+			previewOrderList();
+			sleep(2);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'd':
+			d:
 			quantity = promptQuantity();
+			if(checkMoney(myMoney, 449*quantity))goto d;
 			iCounter = addToCart(iCounter,"Classic Cheese Pizza",quantity,449*quantity);
+			previewOrderList();
+			sleep(2);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'e':
+			e:
 			quantity = promptQuantity();
+			if(checkMoney(myMoney, 150*quantity))goto e;
 			iCounter = addToCart(iCounter,"Carbonara",quantity,150*quantity);
+			previewOrderList();
+			sleep(2);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'f':
+			f:
 			quantity = promptQuantity();
+			if(checkMoney(myMoney, 125*quantity))goto f;
 			iCounter = addToCart(iCounter,"Spaghetti",quantity,125*quantity);
+			previewOrderList();
+			sleep(2);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'g':
+			g:
 			quantity = promptQuantity();
+			if(checkMoney(myMoney, 80*quantity))goto g;
 			iCounter = addToCart(iCounter,"Iced Tea",quantity,80*quantity);
+			previewOrderList();
+			sleep(2);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'h':
+			h:
 			quantity = promptQuantity();
+			if(checkMoney(myMoney, 75*quantity))goto h;
 			iCounter = addToCart(iCounter,"Coke",quantity,75*quantity);
+			previewOrderList();
+			sleep(2);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'i':
+			i:
 			quantity = promptQuantity();
+			if(checkMoney(myMoney, 75*quantity))goto i;
 			iCounter = addToCart(iCounter,"Lemon Tea",quantity,75*quantity);
+			previewOrderList();
+			sleep(2);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'j':
+			j:
 			quantity = promptQuantity();
+			if(checkMoney(myMoney, 80*quantity))goto j;
 			iCounter = addToCart(iCounter,"Sprite",quantity,80*quantity);
+			previewOrderList();
+			sleep(2);
 			menu();
 			return;
 //------------------------------------------------------------			
 		case 'k':
+			k:
 			quantity = promptQuantity();
+			if(checkMoney(myMoney, 80*quantity))goto k;
 			iCounter = addToCart(iCounter,"Royal",quantity,80*quantity);
+			previewOrderList();
+			sleep(2);
 			menu();
 			return;
 //------------------------------------------------------------			
@@ -239,7 +312,10 @@ void resibo(){
 		total+=itemPrice[i];
 }
 
-p("\n\n\t\tTOTAL: P %d\n\n\n\n\n",total);
+
+p("\n\n%30s  %d\n","CASH:",myMoney);
+p("%30s  %d\n","AMOUNT DUE:",total);
+p("%30s  %d\n","CHANGE:",myMoney-total);
 }
 
 
