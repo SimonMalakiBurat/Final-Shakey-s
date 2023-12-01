@@ -18,9 +18,7 @@ ANDREI SIMON
 		
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <ctype.h>
-#include <unistd.h>
 #include <stdbool.h>
 #include <string.h>
 #define p printf 
@@ -109,12 +107,9 @@ void order(){
 //------------------------------------------------------------
 		case 'a':
 			quantity = promptQuantity();/*assign a value to quantity variable*/
-			if(myMoney > 674*quantity){
 			iCounter = addToCart(iCounter,"Roast Beef Pizza",quantity,674*quantity);/*assign a value to iCounter*/
-			myMoney-=674*quantity;
 			menu();/*recursion*/
 			return;
-			}
 			
 //------------------------------------------------------------			
 		case 'b':
