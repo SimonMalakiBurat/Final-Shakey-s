@@ -21,12 +21,16 @@ ANDREI SIMON
 #include <ctype.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 #define p printf 
 #define s scanf
 
 
 
-int myMoney = 10000;//INITIAL BALANCE
+
+
+ 
+int myMoney;//INITIAL BALANCE
 
 
 //===========================================================	
@@ -46,6 +50,16 @@ int promptQuantity(){
 		return n;
 }
 
+
+//===========================================================	
+void loading(){
+	system("cls");
+	for(int i = 0; i<10; i++){
+    usleep(100000);  
+    printf(".");
+    fflush(stdout);
+}
+}
 
 
 
@@ -285,6 +299,7 @@ void previewOrderList(){
 //CUSTOMER AND CASHIER NAME INPUT FUNCTION
 char customerName[100],cashierName[100];
 void intro(){
+		loading();
 		system("cls");/*clears terminal*/
 		p("ENTER CUSTOMER NAME: ");
 		gets(customerName);/*prompts user for customer name and store it in a variable*/
@@ -300,6 +315,7 @@ void intro(){
 //===========================================================	
 //PRINT RECEIPT FUNCTION
 void resibo(){
+					loading();
 					system("cls");/*clears terminal*/
 					p("\t\tR E C I E P T\n\n\n");
 					p("\t\tCUSTOMER: %s\n\t\tCASHIER: %s\n\n\n",customerName,cashierName);
@@ -314,9 +330,9 @@ void resibo(){
 }
 
 
-p("\n\n%30s  %d\n","CASH:",myMoney);
+p("\n\n%30s  %d\n","CASH:",10000);
 p("%30s  %d\n","AMOUNT DUE:",total);
-p("%30s  %d\n","CHANGE:",myMoney-total);
+p("%30s  %d\n","CHANGE:",10000-total);
 }
 
 
@@ -325,6 +341,7 @@ p("%30s  %d\n","CHANGE:",myMoney-total);
 //===========================================================	
 //HOME FUNCTION
 void home(){
+	loading();
 	//EMPTY THE ARRAY AND RESET COUNTER IF HOME FUNCTION IS CALLED
 	for(int i = 0; i<iCounter;i++){
 		strcpy(itemName[i], "");  
@@ -363,6 +380,7 @@ void home(){
 //===========================================================	
 //EXIT FUNCTION
 void myExit(){
+	loading();
 	system("cls");/*clears terminal*/
     p("PROGRAM TERMINATED\n");
 }
@@ -375,6 +393,9 @@ void myExit(){
 //===========================================================	
 //MAIN FUNCTION
 int main(){
+	
+	srand(time(NULL));//SA TIME NA KA BASED ANG SEED PARA RANDOM TALAGA
+	myMoney = rand() % (10000 - 5000 + 1) + 5000;//GENERATE RANDOM NUMBER BETWEEN 5K AND 10K
 	
       intro();
   	 home();
